@@ -74,13 +74,13 @@ is_english_char() {
 }
 
 
-##[[-n (expression) ]] == check if have value. if have value return 1. else - 0
+##[[-n (expression) ]] == check if have value and return 0/1.
 #${english_to_hebrew[$first_char]} == check if first char is in the array
 
 
 translate() {
     local input="$1"
-    local -n  dictionary="$2" #-n points to array outside of function
+    local -n dictionary="$2" #-n points to array outside of function
     local output="" #set output no empty string
     for (( i=0; i<${#input}; i++ )); do #run on each char in "input"
         char="${input:i:1}" #set 'char' to 1 char in i index
@@ -104,8 +104,3 @@ first_char="${input:0:1}" # set dirst_char to the char at index 0
    	 echo "Converted text: $converted_text"
    	 setxkbmap us.il
      fi
-
-#the if condition is - send is_english_char the first char
-#if yes - return 1 and activate thr first if
-#if not - activate else
-

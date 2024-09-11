@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # same as 6 just use clipx for input :)
 declare -A english_to_hebrew=(
     ["q"]="/"

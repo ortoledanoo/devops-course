@@ -1,6 +1,5 @@
 *.swp
+a.out
 !.c
 !.sh
-!/
-!.txt
-!.pdf
+

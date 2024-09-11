@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Define 2 arrays onw hebrew-english and 2 english - hebrew
-
+# Look at Question 8 - Another Way to Solve This Problem by using 2 Functions
+# This Way Also Use 'select' and Not Automatic
 declare -A english_to_hebrew=(
     ["q"]="/"
     ["w"]="'"
@@ -67,14 +68,14 @@ declare -A hebrew_to_english=(
 )
 
 
-# Function to translate text using associative arrays
+# Function to convert text using associative arrays
 translate() {
     local input="$1" #the text user entered
     local -n mapping="$2" # mapping (en-he or he-en)
     local output="" #set output to empty string
     for (( i=0; i<${#input}; i++ )); do #runs from 0 index for all input
-        char="${input:i:1}" 
-        output+="${mapping[$char]}"
+        char="${input:i:1}" #Take 1 Char in i index
+        output+="${mapping[$char]}"#Set 'output' to The Matched Char
     done
     echo "$output"
 }
