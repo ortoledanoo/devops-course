@@ -1,5 +1,7 @@
 *.swp
+*.swo
 a.out
 !.c
 !.sh
 *.out
+.DS_Store
