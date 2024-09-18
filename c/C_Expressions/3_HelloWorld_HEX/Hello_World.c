@@ -1,5 +1,5 @@
 #include <stdio.h>
-//This Program Should Print "Hello World!" from Hex value array
+//This Program Prints "Hello World!" from Hex value array
 int main()
 {
 	int i = 0;

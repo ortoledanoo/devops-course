@@ -1,6 +1,7 @@
 #include <stdio.h>
 //C Function Power By 10 
 //Deals with Negative Numbers and 0
+
 double PowerByTen(int user_input);
 
 int main(void)
@@ -15,7 +16,7 @@ double PowerByTen(int user_input)
 {
 	int i;
 	double result = 1;
-	int abs_input;
+	int abs_input; //Converts Negative Values
 	abs_input = user_input>0 ? user_input : -user_input;
 
 	for (i = 0; i < abs_input; i++)

@@ -1,20 +1,20 @@
 #include <stdio.h>
 
-size_t JosephusProblem(const size_t N, size_t k);
+size_t JosephusProblem(const size_t soilders, size_t jumps);
 
 int main(void){
 	printf("Josephus Problem\n");
 	
-	size_t N;
-	int k;
+	size_t soilders;
+	size_t jumps;
 
 	printf("Please Enter Soilders Number - ");
-	scanf("%ld", &N);
+	scanf("%ld", &soilders);
 
-	printf("\nEnter k - ");
-	scanf("%d", &k);
+	printf("\nEnter jumps - ");
+	scanf("%d", &jumps);
 
-	printf("The Winner is - %ld \n\n", JosephusProblem(N, k));
+	printf("The Winner is - %ld \n\n", JosephusProblem(soilders, jumps));
 
 	return 0;
 
@@ -22,12 +22,12 @@ int main(void){
 
 
 
-size_t JosephusProblem(const size_t N, size_t k){
+size_t JosephusProblem(const size_t soilders, size_t jumps){
 	
-        int alive_soilders = N;
-        int i = 0;
-        int killed = 0;
-        int soilders[N];
+        size_t alive_soilders = soilders;
+        size_t i = 0; //Index in Array
+        size_t flag = 0; //Flag 
+        size_t soilders[N]; // Array of Soilders
 
         for(size_t j = 0; j < N; j++)
         {
@@ -38,14 +38,14 @@ size_t JosephusProblem(const size_t N, size_t k){
         {
 
                 if(soilders[i] == 0){
-                        killed++;
+                        flag++;
                 }
 
-                if(killed == k)
+                if(flag == k)
                 {
                         soilders[i] = 1;
                         alive_soilders--;
-                        killed = 0;
+                        flag = 0;
                 }
 
                 i++;

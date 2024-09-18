@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+//Function Thats Count The Size Of String chars 
 int StrLen(char* first_char);
 
 int main(void){

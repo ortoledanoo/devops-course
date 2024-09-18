@@ -23,5 +23,6 @@ int ReturnSingle(int array[], int size){
 			return array[i];
 		}
 	}
+	return 0;
 }
 

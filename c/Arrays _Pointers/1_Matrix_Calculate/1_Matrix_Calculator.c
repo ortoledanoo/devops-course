@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+//Calculates The Sum OF Each Row and Saves in Array
+//Returns The Result Array
+
 void MatrixSum(int* results, int m, int n, int array[][3]);
 
 
