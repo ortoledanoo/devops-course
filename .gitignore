@@ -1,7 +1,7 @@
-*.swp
-*.swo
-a.out
-!.c
-!.sh
-*.out
-.DS_Store
+*
+!*.md
+!*/
+!.gitignore
+!*.sh
+!*.c
+!*.h
