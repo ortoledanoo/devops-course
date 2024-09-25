@@ -1,5 +1,7 @@
+#Ignore All
 *
-!*.md
+
+#Instead Of
 !*/
 !.gitignore
 !*.sh

@@ -1,5 +1,7 @@
 #include "stack.h"
 
+/* Reviewed By Amit */
+
 int main(void)
 {
 	/* Create Stack */	
@@ -28,7 +30,7 @@ int main(void)
 			/* Check If Have Close Before Open */
         		if (IsEmpty(char_stack))
                 	{	
-                		printf("BAD: Too many closing brackets\n");
+                		printf("BAD: Too Much Close Brackets\n");
                 		return 1;
             		}
             
