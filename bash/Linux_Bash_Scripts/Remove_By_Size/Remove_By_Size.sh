@@ -6,7 +6,7 @@ read DIR
 echo "Enter an max size in  MBytes - "
 read X
 
-find $DIR -type f -name "*" -size +$X -print -deletei
+find $DIR -type f -name "*" -size +$X -print -delete
 
 #find = locate files based on various criteria
 #DIR = start at user entered directory
