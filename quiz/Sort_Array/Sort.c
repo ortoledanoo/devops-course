@@ -4,7 +4,6 @@ void Sort(int* arr, int size);
 
 int main(void)
 {
-	printf("Array\n");
 	int array[] = {0,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,1};
 	int size = sizeof(array)/4;
 	Sort(array, size);
