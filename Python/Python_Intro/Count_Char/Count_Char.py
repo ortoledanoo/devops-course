@@ -1,3 +1,5 @@
+#Reviewed By Khaled
+
 def CountChar(string, char):
     count = 0
     for i in string:
