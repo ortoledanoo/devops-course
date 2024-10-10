@@ -1,3 +1,4 @@
+#Reviewed By Khaled
 def IsPrime(user_number):
     if user_number > 1:
         for i in range(2, (user_number // 2) + 1):
