@@ -1,5 +1,5 @@
 #Reviewed By Daniel
-def DictionaryToTuples(dictionary):
+def dictionary_to_tuples(dictionary):
     return list(dictionary.items())
 #items() = Return Key-Values as Tuples
 
