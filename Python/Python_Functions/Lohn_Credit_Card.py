@@ -17,5 +17,5 @@ def lohn_credit_card(user_input):
         print("Credit Card BAD")
         return False
 
-user_input = 5326141204293524
+user_input = (int(input("Enter a Credit Card Number - ")))
 lohn_credit_card(user_input)
