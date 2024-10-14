@@ -1,3 +1,5 @@
+#Reviewed By Joni
+
 hebrew_gematria = {
     'א': 1,
     'ב': 2,
@@ -37,7 +39,6 @@ def gematria(str):
 
     # Short Way
     return sum([hebrew_gematria.get(char, 0) for char in str])
-
 
 print(gematria("שלום"))
 

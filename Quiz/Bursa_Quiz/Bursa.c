@@ -5,7 +5,7 @@ int Bursa(int arr[], int size, int* buy, int* sell);
 int main(void)
 {
 	printf("Bursa Quiz\n");
-	int arr[] = {3,3,100,3,2,10,9,9,10,0,1,3};
+	int arr[] = {3,2,100,3,2,10,9,9,10,0,1,3};
 	int size = (sizeof(arr) / sizeof(int));
 	int buy, sell;
 	printf("Max Profit is - %d\n", Bursa(arr, size, &buy, &sell));

@@ -1,3 +1,4 @@
+#Reviewed By Joni
 def lohn_credit_card(user_input):
     #Convert Credit Number To List
     credit_card = [int(x) for x in str(user_input)]
@@ -9,13 +10,7 @@ def lohn_credit_card(user_input):
         if credit_card[i] > 9:
             credit_card[i] -= 9
 
-    #Print The Result
-    if sum(credit_card) % 10 == 0:
-        print("Credit Card Valid")
-        return True
-    else:
-        print("Credit Card BAD")
-        return False
+    return sum(credit_card) % 10 == 0
 
 user_input = (int(input("Enter a Credit Card Number - ")))
 lohn_credit_card(user_input)
