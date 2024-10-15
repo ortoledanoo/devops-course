@@ -1,27 +1,27 @@
 import re #re.search
 
 #Reviewed By Khaled
-def PasswordVerify(user_input):
-    flag = 0
-    if (len(user_input) < 8):
-        flag = 1
-    elif re.search(" ", user_input):
-        flag = 1
-    elif not re.search("[A-Z]", user_input):
-        flag = 1
-    elif not re.search("[a-z]", user_input):
-        flag = 1
-    elif not re.search("[@#$%&]" , user_input):
-        flag = 1
-    elif not re.search("[0-9]" , user_input):
-        flag = 1
+def password_verify(user_input):
+    passed = True
 
-    if flag == 0:
+    if (len(user_input) < 8):
+        passed = False
+    elif re.search(" ", user_input):
+        passed = False
+    elif not re.search("[A-Z]", user_input):
+        passed = False
+    elif not re.search("[a-z]", user_input):
+        passed = False
+    elif not re.search("[@#$%&]" , user_input):
+        passed = False
+    elif not re.search("[0-9]" , user_input):
+        passed = False
+
+    if passed:
         print("Password Verified")
-        return 0
     else:
         print("Password FAILED")
-        return 1
 
 user_input = input("Please Enter a Password - ")
-PasswordVerify(user_input)
+password_verify(user_input)
+
