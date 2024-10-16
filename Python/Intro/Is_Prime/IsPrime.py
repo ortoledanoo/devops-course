@@ -1,15 +1,18 @@
 #Reviewed By Khaled
-def IsPrime(user_number):
-    if user_number > 1:
-        for i in range(2, (user_number // 2) + 1):
-
-            if (user_number % i) == 0:
-                print(user_number, "is not a prime number")
-                break
+def is_prime(number):
+    """Gets Number and Return True if Prime Or False if Not"""
+    if number > 1:
+        for i in range(2, (number // 2) + 1):
+            if (number % i) == 0:
+                return False
         else:
-            print(user_number, "is a prime number")
+            return True
     else:
-        print(user_number, "is not a prime number")
+        return False
 
 user_number = int(input("Please Enter a Number - "))
-IsPrime(user_number)
+if is_prime(user_number):
+    print(f"{user_number} is Prime Number")
+else:
+    print(f"{user_number} is NOT Prime Number")
+

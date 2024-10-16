@@ -1,5 +1,6 @@
 #Reviewed By Daniel
 def letter_occurrences(string):
+    """Gets a String and Returns Each Letter Occurrence"""
     occurrences = {}
     for char in string:
         occurrences[char] = occurrences.get(char, 0) + 1

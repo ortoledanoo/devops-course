@@ -1,9 +1,14 @@
 #Reviewed By Khaled
 
-def LeapYear(user_input):
-    if (user_input % 4 == 0 and user_input % 100 != 0) or ( user_input % 100 == 0 and user_input % 400 == 0):
-        return "Yes"
+def leap_year(year):
+    """Gets Year and Return True if Leap Year or False if Not"""
+    if (year % 4 == 0 and year % 100 != 0) or ( year % 100 == 0 and year % 400 == 0):
+        return True
     else :
-        return "No"
-user_number = int(input("Please Enter a Year - "))
-print(LeapYear(user_number))
+        return False
+
+user_input = int(input("Please Enter a Year - "))
+if leap_year(user_input):
+    print(f"{user_input} is Leap Year")
+else:
+    print(f"{user_input} is NOT Leap Year")

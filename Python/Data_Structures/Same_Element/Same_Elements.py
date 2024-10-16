@@ -1,6 +1,7 @@
 #Reviewed By Daniel
-def same_elements(list1, list2):
-    return [item for item in list1 if item in list2]
+def same_elements(first_list, second_list):
+    """Gets 2 Lists and Return List With Same Elements"""
+    return [item for item in first_list if item in second_list]
 
 
 list1 = [1, 2, 3, 4, 9]

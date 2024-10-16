@@ -1,27 +1,37 @@
 import re #re.search
 
 #Reviewed By Khaled
-def password_verify(user_input):
-    passed = True
+def password_verify(password):
+    """This Function Gets Password And Checks The Following Rules:
+    1. Length > 8
+    2. No Space
+    3. Contains UpperCase [A-Z]
+    4. Contains LowerCase [a-z]
+    5. Contains Special Character
+    6. Contains digit [0-9]
+    Return True if Passed and False if Failed"""
 
-    if (len(user_input) < 8):
-        passed = False
-    elif re.search(" ", user_input):
-        passed = False
-    elif not re.search("[A-Z]", user_input):
-        passed = False
-    elif not re.search("[a-z]", user_input):
-        passed = False
-    elif not re.search("[@#$%&]" , user_input):
-        passed = False
-    elif not re.search("[0-9]" , user_input):
-        passed = False
+    if len(password) < 8:
+        return False
+    elif re.search(" ", password):
+        return False
+    elif not re.search("[A-Z]", password):
+        return False
+    elif not re.search("[a-z]", password):
+        return False
+    elif not re.search("[@#$%&]" , password):
+        return False
+    elif not re.search("[0-9]" , password):
+        return False
 
-    if passed:
-        print("Password Verified")
-    else:
-        print("Password FAILED")
+    return True
 
 user_input = input("Please Enter a Password - ")
-password_verify(user_input)
+if password_verify(user_input):
+    print("Password Verified")
+else:
+    print("Bad Password")
+
+
+
 

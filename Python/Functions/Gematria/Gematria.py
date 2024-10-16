@@ -34,15 +34,15 @@ hebrew_gematria = {
 }
 
 
-def gematria(str):
-    result = 0
-
+def gematria(hebrew_string):
+    """Gets String in Hebrew and Converts To The Gematria Value from hebrew_gematria Dictionary"""
     # Short Way
-    return sum([hebrew_gematria.get(char, 0) for char in str])
+    return sum([hebrew_gematria.get(char, 0) for char in hebrew_string])
+    # Long Way
+    #result = 0
+    # for char in str:
+    #    letter_value = hebrew_gematria.get(char, 0)  # 0 is OPTIONAL, Return if nothing found
+    #    result += letter_value
 
 print(gematria("שלום"))
 
-# Long Way
-# for char in str:
-#    letter_value = hebrew_gematria.get(char, 0)  # 0 is OPTIONAL, Return if nothing found
-#    result += letter_value

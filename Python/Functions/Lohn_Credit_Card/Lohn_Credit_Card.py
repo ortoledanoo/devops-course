@@ -1,7 +1,8 @@
 #Reviewed By Joni
-def lohn_credit_card(user_input):
+def lohn_credit_card(credit_card_number):
+    """Gets Credit Card Number and Check Valid Using Lohn Algorithm """
     #Convert Credit Number To List
-    credit_card = [int(x) for x in str(user_input)]
+    credit_card = [int(x) for x in str(credit_card_number)]
     print(credit_card)
 
     #Run From 0 to 1 Before Last Element
