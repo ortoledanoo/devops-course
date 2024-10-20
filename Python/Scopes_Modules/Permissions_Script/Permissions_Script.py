@@ -7,7 +7,7 @@ print(os.listdir("/home/ortoledano"))
 if sys.argv[1] in os.listdir("/home/ortoledano"):
     print("File Found")
     file_path = str("/home/ortoledano/" + sys.argv[1])
-    if os.access(file_path, os.W_OK):
+    if os.access(file_path, os.X_OK):
         print(file_path)
         print("Have Execute Permissions")
     else:
