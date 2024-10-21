@@ -6,7 +6,7 @@ def sort_red_green(arr_balls):
     right_i = size - 1
     i = 0
 
-    while i <= right_i:
+    while i <= right_i: #To Avoid Run On Swapped Red Balls
         if arr_balls[i] == 'green':
             arr_balls[left_i], arr_balls[i] = arr_balls[i], arr_balls[left_i]
             left_i += 1
