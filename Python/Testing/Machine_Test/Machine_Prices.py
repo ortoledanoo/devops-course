@@ -42,26 +42,4 @@ class Machine:
         self.service.cloud[self.machine_name] = self.service.cloud.get(self.machine_name, 0) + total_price
         return total_price
 
-if __name__ == "__main__":
-
-    amazon = CloudService("Amazon")
-    azure = CloudService("Azure")
-
-    machine_a = Machine(1, "Machine_A", amazon)
-    machine_b = Machine(1, "Machine_B", amazon)
-    machine_c = Machine(2, "Machine_C", azure)
-    machine_d = Machine(2, "Machine_D", azure)
-    machine_a.start_machine()
-    machine_b.start_machine()
-    machine_c.start_machine()
-    machine_d.start_machine()
-    print(amazon.cloud)
-    print(azure.cloud)
-    sleep(6)
-
-    print(amazon.cloud)
-    print(f"The Total {amazon.name} Price is - {round(sum(amazon.cloud.values()), 2)}$")
-    print(azure.cloud)
-    print(f"The Total {azure.name} Price is - {round(sum(azure.cloud.values()), 2)}$")
-
 
