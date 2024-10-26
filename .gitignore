@@ -8,4 +8,5 @@
 !*.c
 !*.h
 !*.py
+!requirements.txt
 

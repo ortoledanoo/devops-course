@@ -21,12 +21,10 @@ def test_machine_initialization(machine):
     assert machine.time_start is None
     assert machine.time_end is None
 
-def create_double_machine(machine):
-    """Create Double Machine in Same Name"""
-    another_machine = Machine(machine_type=1, machine_name="Machine_A", service=mock_service)
-    assert another_machine.machine_name == "Machine_A"
-
-
+# def create_double_machine(machine):
+#     """Create Double Machine in Same Name"""
+#     another_machine = Machine(machine_type=1, machine_name="Machine_A", service=mock_service)
+#     assert another_machine.machine_name == "Machine_A"
 
 def test_start_machine(machine):
     """Checks Machine Started"""

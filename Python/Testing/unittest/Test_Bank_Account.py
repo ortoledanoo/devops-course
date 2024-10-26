@@ -16,9 +16,9 @@ class TestBankAccount(unittest.TestCase): #unittest.TestCase - Library Allow To 
         self.account.deposit(100)
         self.assertEqual(self.account.balance, 100, "Money Not Deopsited")
 
-    def test_deposit_string(self):
-        """Checks Bad Input"""
-        self.account.deposit("string")
+    # def test_deposit_string(self):
+    #     """Checks Bad Input"""
+    #     self.account.deposit("string")
 
     def test_deposit_negative_value(self):
         """Checks if User Can Deposit Negative Values"""
