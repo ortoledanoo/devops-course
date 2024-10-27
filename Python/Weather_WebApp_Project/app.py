@@ -1,6 +1,8 @@
+#API Key
+from weather_service import api_key
+
 # Files
 from weather_service import WeatherService
-from config import api_key
 from datetime import datetime
 
 # Logging
