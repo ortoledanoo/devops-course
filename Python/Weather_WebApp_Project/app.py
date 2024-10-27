@@ -57,7 +57,7 @@ def initialize_cache_key(city_name):
 
 # Decorator Calls requests_limit_handler() Automatic When 429 Status Code Arrived
 @app.errorhandler(429)
-def requests_limit_handler(error): 
+def requests_limit_handler(error):
     """ Handle  429 HTTP Error (Too Many Requests)
     Logging it And Returning an Error
     Args - error: Error Message For Logging.
