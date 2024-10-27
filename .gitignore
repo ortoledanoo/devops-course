@@ -1,12 +1,16 @@
-#Ignore All
+# Ignore All Files By Default
 *
 
-#Instead Of
-!*/
+# Track Specific Files and Extensions 
 !.gitignore
 !*.sh
 !*.c
 !*.h
 !*.py
 !requirements.txt
+!*.html
+!*.css
+!readme.txt
+
+
 

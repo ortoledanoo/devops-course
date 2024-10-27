@@ -1,9 +1,18 @@
-from flask import Flask, render_template, request, jsonify
-from flask_caching import Cache
+# Files
 from weather_service import WeatherService
 from config import api_key
 from datetime import datetime
+
+# Logging
 import logging
+
+# Flask
+from flask import Flask, render_template, request, jsonify
+
+# Flask - Caching
+from flask_caching import Cache
+
+# Flask - Limiter
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
@@ -14,7 +23,7 @@ limiter = Limiter(
     # Function to Identify Users by IP
     # So Requests will Count By IP
     key_func=get_remote_address,
-    # Uses RAM to Store Rate Limit Data
+    # Use RAM to Store Rate Limit Data
     storage_uri="memory://",
     default_limits=["200 per day", "50 per hour"]
 )
@@ -46,17 +55,16 @@ def initialize_cache_key(city_name):
     Example - Tel Aviv -> telaviv """
     return f'weather_{city_name.lower().strip()}'
 
-# Decorator Calls requests_limit_handler() Automatc When 429 Status Code
+# Decorator Calls requests_limit_handler() Automatic When 429 Status Code Arrived
 @app.errorhandler(429)
-def requests_limit_handler(error): ########################################
+def requests_limit_handler(error): 
     """ Handle  429 HTTP Error (Too Many Requests)
     Logging it And Returning an Error
     Args - error: Error Message For Logging.
-    Return - 'rate_limit.html' With a 429 HTTP Status Code.
+    Return - 'requests_limit.html' With a 429 HTTP Status Code.
     """
-    logger.warning(f"Rate Limit For IP - {get_remote_address()}")
-    return render_template('rate_limit.html'), 429
-
+    logger.warning(f"Requests Limit For IP - {get_remote_address()}")
+    return render_template('requests_limit.html'), 429
 
 def get_day_of_week(date_str):
     """ Converts Date String To  Day Of The Week
