@@ -1,0 +1,166 @@
+/* Reset All Default Browser Styles ######*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /* Makes sizing elements easier */
+}
+
+/* Main page styling */
+body {
+    font-family: Arial, sans-serif;  /* Font Set */
+    line-height: 1.6;  /* Spacing Between Lines */
+    background-color: #f0f2f5;  /* Light Gray Background */
+}
+
+/* Center Content On Page With Maximum Width */
+.container, .weather-container {
+    max-width: 1200px;  /* Prevents Content From Stretching Too Wide */
+    margin: 0 auto;  /* Centers Container */
+    padding: 20px;  /* Inner Spacing */
+}
+
+/* Main title styling */
+h1 {
+    color: #1a1a1a;  /* Dark Gray, Not Pure Black */
+    text-align: center;
+    margin-bottom: 30px;  /* Space Below Title */
+}
+
+/* Search Box and Button Container */
+.search-container {
+    display: flex;  /* Puts search box and button side by side ###################### */
+    justify-content: center;  /* Centers Items */
+    gap: 10px;  /* Space between search box and button */
+    margin-bottom: 20px; /*#################################*/
+}
+
+/* Search input field */
+input[type="text"] {
+    padding: 10px; /* Size */
+    width: 300px; /* Size */
+    border: 2px solid #ddd; /* Border Of Search Box */
+    border-radius: 4px;  /* Rounded corners */
+    font-size: 16px;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;  /* Blue color */
+    color: white;
+    border: none; /* No Border */
+    border-radius: 4px;
+    cursor: pointer;  /* Change To Pointer When Mouse on Him */
+    font-size: 16px;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #0056b3;  /* Dark Blue on Pointing */
+}
+
+/* Grid Layout For Weather Cards */
+.weather-cards {
+    display: grid; /* Layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  /* Layout */
+    gap: 20px;  /* Space Between Cards */
+    margin-top: 30px; /* Space From Top */
+}
+
+/* Weather Card */
+.weather-card {
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Shadow Effect */
+}
+
+/* Card Title */
+.weather-card h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Date in Card */
+.date {
+    color: #666;  /* Gray text */
+    margin-bottom: 15px;
+}
+
+/* Weather Information Layout */
+.weather-details p {
+    margin: 8px 0;
+    text-align: left;
+}
+
+/* Bold Text in Card */
+.weather-details span {
+    font-weight: bold;
+    color: #555;
+}
+
+
+
+/* Error Message  */
+.error-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Back button styling */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #6c757d;  /* Gray Button */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Back Button Hover Effect */
+.back-button:hover {
+    background-color: #5a6268;  /* Darker Gray Hover */
+}
+
+/* Location Text Styling */
+.location {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Rate limit page styling */
+.rate-limit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /* Full viewport height */
+    background-color: #f8d7da;  /* Light red background */
+}
+
+/* Error Rate Limit*/
+.error-card {
+    background-color: #fff8f8;  /* Very light red background */
+    border: 1px solid #ffeded;  /* Light red border */
+    max-width: 400px; /* Limiting width */
+    width: 90%; /* Responsive width */
+    margin: auto; /* Centers the card */
+
+}
+
+.error-card h2 {
+    color: #d63031;  /* Red text for error heading */
+    margin-bottom: 20px;
+}
+
+.error-card .weather-details p {
+    color: #666;
+    margin: 15px 0;
+    text-align: center;  /* Center align error messages */
+}
+

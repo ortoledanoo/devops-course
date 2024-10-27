@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requests Limit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Rate Limit Error!</h1>
+
+        <div class="weather-card error-card">
+            <h2>Requests Limit Exceeded</h2>
+            <div class="weather-details">
+                <p>Please Wait Before Trying Again</p>
+            </div>
+            <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
