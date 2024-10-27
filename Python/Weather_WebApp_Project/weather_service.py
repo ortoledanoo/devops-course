@@ -1,7 +1,14 @@
 # weather_service.py
 import requests
-# Files
-from config import base_url
+
+#API Key
+import os
+from dotenv import load_dotenv
+load_dotenv()
+api_key = os.getenv("WEATHER_API_KEY")
+
+# Base URL
+base_url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline"
 
 
 class WeatherService:
@@ -11,6 +18,7 @@ class WeatherService:
     def get_forecast(self, city_name):
         """ Get weather forecast from API
         Returns JSON response or error message """
+
         try:
             # API request parameters
             params = {
