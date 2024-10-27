@@ -56,11 +56,12 @@
     #           "tempmax": "25", ---> Day (add C)
     #           "humidity": "60" ---> (ADD %)
     #       },
-    #       #... (7 days total)
     #   ],
     #   "address": "Jerusalem", ---> City
     #   "resolvedAddress": "Jerusalem, Israel" ---> Country
     #}
+    # Data (JSON) Translated For This README From - https://jsonviewer.stack.hu/
+   
 
     # B. Template Rendering
     # Server Uses result.html To Show Result:
@@ -74,8 +75,8 @@
     #    - Show Humidity ("60%")
 
     # C. Response Sending
-    # 1. Server Completes The Original POST Request
-    # 2. Sends The Fully Rendered Result.html
+    # 1. Server Completes The POST Request
+    # 2. Sends The Fully Rendered result.html
     # 3. Browser Receives and Displays The Page
     # 4. Browser GET request for style.css
 
