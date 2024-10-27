@@ -4,14 +4,16 @@
 
 # Install Needed Packages:
 #    pip install -r requirements.txt
+# requirement.txt Created With pipreqs 
 
 # Features:
 # - Rate Limiting - Limits Users to a Maximum of 10 Requests Per Minute to Prevent API Usage Too Much.
+# - API Key - Hidden as .env
 # - Logging - All Events are Logged in weather_app.log to Track Usage, HTTP, Errors and caching.
 # - Caching - Stores Recent Weather Data for 5 Minutes, Reducing the Need To Call The Weather API Too Much Times For Same City Data
 # - Error Handling Handles Missing Input, API errors and Too Many Requests (429).
-     # 400 - Will Return JSON Data With {'error': [Details]}
-     # 429 - Will Return Rendered Template requests_limit.html With 429 Status Code
+     # 400 - Will Return JSON Data With {'error': ["Details About Error"]}
+     # 429 - Will Return Rendered Template requests_limit.html With 429 Status Code (Too Many Requests)
 
 
 # Flow:

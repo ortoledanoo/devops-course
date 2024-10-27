@@ -43,3 +43,5 @@ class WeatherService:
 
         except requests.RequestException as error_type:
             return {'error': f"Could Not Get Weather Data -  {error_type}"}
+
+        
