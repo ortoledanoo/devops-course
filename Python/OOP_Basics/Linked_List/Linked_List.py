@@ -66,11 +66,12 @@ new_list = LinkedList()
 #Check if Empty
 print(f"The List is Empty? - {new_list.is_empty()}")
 
-#Push 4 Values
+#Push 3 Values
 new_list.push(input("Enter First Element - "))
 new_list.push(input("Enter First Element - "))
 new_list.push(input("Enter First Element - "))
-new_list.push(input("Enter First Element - "))
+
+print(new_list)
 
 #Check Again if Empty
 print(f"The List is Empty? - {new_list.is_empty()}")
