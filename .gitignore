@@ -1,16 +1,18 @@
 # Ignore All Files By Default
 *
 
+# Allow All Directories
+!*/
+
 # Track Specific Files and Extensions 
 !.gitignore
 !*.sh
 !*.c
 !*.h
 !*.py
-!requirements.txt
 !*.html
-!*.css
+!.css
 !readme.txt
 
-
-
+# Ignore Specific Directories
+Python/Weather_WebApp_Project/.venv/
