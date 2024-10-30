@@ -14,21 +14,9 @@ from flask import Flask, render_template, request, jsonify
 # Flask - Caching
 from flask_caching import Cache
 
-# Flask - Limiter
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
 
-limiter = Limiter(
-    app=app,
-    # Function to Identify Users by IP
-    # So Requests will Count By IP
-    key_func=get_remote_address,
-    # Use RAM to Store Rate Limit Data
-    storage_uri="memory://",
-    default_limits=["200 per day", "50 per hour"]
-)
 
 # logging Setup
 logging.basicConfig(
@@ -55,16 +43,6 @@ def initialize_cache_key(city_name):
     Example - Tel Aviv -> telaviv """
     return f'weather_{city_name.lower().strip()}'
 
-# Decorator Calls requests_limit_handler() Automatic When 429 Status Code Arrived
-@app.errorhandler(429)
-def requests_limit_handler(error):
-    """ Handle  429 HTTP Error (Too Many Requests)
-    Logging it And Returning an Error
-    Args - error: Error Message For Logging.
-    Return - 'requests_limit.html' With a 429 HTTP Status Code.
-    """
-    logger.warning(f"Requests Limit For IP - {get_remote_address()}")
-    return render_template('requests_limit.html'), 429
 
 def get_day_of_week(date_str):
     """ Converts Date String To  Day Of The Week
@@ -109,7 +87,6 @@ def home():
 
 
 @app.route('/get_weather', methods=['POST'])
-@limiter.limit("10 per minute")  # Override the default limit
 def get_weather():
     """ Main Function, Handles the Request For city, Manages Caching & Error Handling
     Return - Render 'result.html' With Requested Data OR an Error """

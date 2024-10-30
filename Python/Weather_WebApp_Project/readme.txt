@@ -1,19 +1,16 @@
 # Project Overview:
 # This project is a Web Application That Provides a 7-day weather forecast Based on The City Name Provided By The User.
-# It Use Flask to Handle Web Requests, With Rate Limiting and Caching to Optimize API Usage and Performance.
+# It Use Flask to Handle Web Requests and Caching to Optimize API Usage and Performance.
 
 # Install Needed Packages:
 #    pip install -r requirements.txt
 # requirement.txt Created With pipreqs 
 
 # Features:
-# - Rate Limiting - Limits Users to a Maximum of 10 Requests Per Minute to Prevent API Usage Too Much.
 # - API Key - Hidden as .env
 # - Logging - All Events are Logged in weather_app.log to Track Usage, HTTP, Errors and caching.
 # - Caching - Stores Recent Weather Data for 5 Minutes, Reducing the Need To Call The Weather API Too Much Times For Same City Data
-# - Error Handling Handles Missing Input, API errors and Too Many Requests (429).
-     # 400 - Will Return JSON Data With {'error': ["Details About Error"]}
-     # 429 - Will Return Rendered Template requests_limit.html With 429 Status Code (Too Many Requests)
+
 
 
 # Flow:
@@ -28,13 +25,8 @@
 # User Click "Search" Button
 # Browser ---POST---> Server -> "/get_weather" With {city: "jerusalem"}
 
-# 3. Server Processing
-# Server Receives POST Request
-# Server Checks Rate Limiter (Max 10 Requests Per Minute)
-# IF Rate Limit Exceeded:
-#    Return requests_limit.html With 429 Status Code
 
-# 4. Cache Check
+# 3. Cache Check
 # Server Creates Cache Key -> "weather_jerusalem"
 # IF Data in Cache:
 #    Use Cache
@@ -44,7 +36,7 @@
 #    Server Saves Cache (For 5 minutes)
 
 
-# 5. Return Results
+# 4. Return Results
 
     # A. Server Processing
     # Takes Weather Data (JSON) and Filter:
@@ -80,7 +72,7 @@
     # 3. Browser Receives and Displays The Page
     # 4. Browser GET request for style.css
 
-# 6. Back Home
+# 5. Back Home
 # Click "Back to Home" button:
 #    Browser ---GET---> Server: "/"
 #    Returns to Search Page

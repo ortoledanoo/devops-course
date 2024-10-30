@@ -133,34 +133,3 @@ button:hover {
     color: #666;
     margin-bottom: 20px;
 }
-
-/* Rate limit page styling */
-.rate-limit-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;  /* Full viewport height */
-    background-color: #f8d7da;  /* Light red background */
-}
-
-/* Error Rate Limit*/
-.error-card {
-    background-color: #fff8f8;  /* Very light red background */
-    border: 1px solid #ffeded;  /* Light red border */
-    max-width: 400px; /* Limiting width */
-    width: 90%; /* Responsive width */
-    margin: auto; /* Centers the card */
-
-}
-
-.error-card h2 {
-    color: #d63031;  /* Red text for error heading */
-    margin-bottom: 20px;
-}
-
-.error-card .weather-details p {
-    color: #666;
-    margin: 15px 0;
-    text-align: center;  /* Center align error messages */
-}
-
