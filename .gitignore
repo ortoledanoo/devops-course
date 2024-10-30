@@ -12,7 +12,8 @@
 !*.py
 !*.html
 !.css
-!readme.txt
+!*.md
+!*.drawio
 
 # Ignore Specific Directories
 Python/Weather_WebApp_Project/.venv/
