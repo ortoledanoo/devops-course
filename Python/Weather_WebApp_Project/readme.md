@@ -87,9 +87,9 @@ requirement.txt Created With pipreqs
 ### The Components
 1. **Client** - Users Making Request to The Web Application
 2. **Nginx** - Reverse Proxy That Receives Client Requests and Forwards Them to the Backend
-3. **Gunicorn-WSGI**: WSGI server hosting the Flask application instances
-4. **Flask**: The Python-based Web Application Instances
-6. **Deployment Environment**: Infrastructure Of The Application (Managed By ESXi), The .py Files and All The Required Files
+3. **Gunicorn-WSGI** - WSGI server hosting the Flask application instances
+4. **Flask** - The Python-based Web Application Instances
+6. **Deployment Environment** - Infrastructure Of The Application (Managed By ESXi), The .py Files and All The Required Files
 
 ## Deployment Process
 1. Client Send Request to Nginx Reverse Proxy
