@@ -9,7 +9,7 @@ Install Needed Packages
 ```
 pip install -r requirements.txt
 ```
-requirement.txt Created With pipreqs 
+requirement.txt Created With pipreqs
 
 ## Features
 
@@ -90,16 +90,17 @@ Click "Back to Home" button:\
 
 # Deployment Workflow
 ## Oreview
-The Main Goal Of The Deployment Project is To Handle Multiple Rquests
+This Project Showcases a Scalability and Reliability Web Application Deployment Using Nginx, Gunicorn, and Flask
+with Caching and Rate-Limit to Efficiently Handle API calls and User Requests Simultaneously
 
 <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/m28m6fTp/drawio.png' border='0' alt='drawio'/></a>
 
 ## The Components
 1. **Client** - Users Making Request to The Web Application
 2. **Nginx** - Reverse Proxy That Receives Client Requests and Forwards Them to the Backend
-3. **Gunicorn-WSGI** - WSGI server hosting the Flask application instances
-4. **Flask** - The Python-based Web Application Instances
-6. **Deployment Environment** - Infrastructure Of The Application (Managed By ESXi), The .py Files and All The Required Files
+3. **Gunicorn-WSGI** - Server That Runs Multiple Instances of The Flask App, Allowing it to Handle More Requests at The Same Time
+4. **Flask** - The Actual Python Application That Processes User Requests and Returns The Weather Data
+6. **Deployment Environment** - Infrastructure Of The Application (Managed By ESXi), Includes The .py Files and All The Required Files
 
 ## Request Workflow
 1. Client Send Request to Nginx Reverse Proxy
@@ -111,8 +112,7 @@ The Main Goal Of The Deployment Project is To Handle Multiple Rquests
 
 ## Benefits
 - **Scalability** - Components Can Be Scaled Independently
-- **Security** - Nginx acts as a Reverse Proxy Hidding The Servers IP
+- **Security** - Nginx Acts as a Reverse Proxy Hidding The Servers IP
 - **Load Balancing** - Nginx Can Distribute Requests Across Multiple Gunicorn/Flask Instances and Gunicorn Can Create Few Workers For Better Load Balancing
-
 
 
