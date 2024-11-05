@@ -1,0 +1,35 @@
+# Provides General Data About Service and Dependencies On Other Services
+[Unit]
+Description=Gunicorn instance to serve Flask
+# Run Only After System Network Available (Gunicorn Must Get Network)
+After=network.target
+
+# The Service Details
+[Service]
+# The User Will Run The Service
+User=root
+
+#The Group Of The Service (www-data) - Is Standart Group Fer Web Services
+Group=www-data
+
+# Set To Flask App Home
+WorkingDirectory=/home/server_2/weather_app
+
+# Set To Virtual Environment Location Where Gunicorn Installed+Flask Dependencies
+Environment="PATH=/home/server_2/weather_app/venv/bin"
+
+# The Actual Command That Runs The Service
+# # # /home/server_2/weather_app/venv/bin/gunicorn --> Run Gunicorn From venv
+# # # --workers 3 --> Run 3 Workers
+# # # --bind 0.0.0.0:5000 --> Gunicorn Listen To Any IP From Port 5000
+# # # wsgi:app --> run wsgi.py Where The app Runs
+# # # --error-logfile /var/log/gunicorn/access.log --> Set Logfile
+# # # --capture-output --> Save Any Output On Logs (like print)
+# # # --log-level info --> Set Log Level To Info
+ExecStart=/home/server_2/weather_app/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 wsgi:app --error-logfile /var/log/gunicorn/access.log --capture-output --log-level info
+
+# Set Run Level And When Service Will Run
+[Install]
+# multi-user.target --> Script Will Run From RunLevel 3 (Multi User) At Any Boot
+WantedBy=multi-user.target
+

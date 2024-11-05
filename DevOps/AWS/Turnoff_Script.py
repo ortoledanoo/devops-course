@@ -28,3 +28,4 @@ if instance_ids:
     print(f"Stopping Instances - {instance_ids}")
 else:
     print("No Running Instances!")
+
