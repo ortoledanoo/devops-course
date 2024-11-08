@@ -17,4 +17,4 @@
 !*.service
 
 # Ignore Specific Directories
-Python/Weather_WebApp_Project/.venv/
+Python/Weather_WebApp_Project/.virtual/
