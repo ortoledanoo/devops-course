@@ -1,0 +1,22 @@
+version: "3"
+services:
+  instance_1:
+    image: multistage-app
+    ports:
+      - "5001:5000"
+    restart: always
+
+  instance_2:
+    image: multistage-app
+    ports:
+      - "5002:5000"
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+
