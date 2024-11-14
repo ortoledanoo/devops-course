@@ -1,0 +1,12 @@
+[Unit]
+Description=Update GitLab IP Inside Docker-Compose
+After=network.target docker.service
+
+[Service]
+ExecStart=/home/ubuntu/update_gitlab_ip.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+
