@@ -19,5 +19,6 @@
 !*.conf
 !*.yml
 !*.yaml
+
 # Ignore Specific Directories
 Python/Weather_WebApp_Project/.virtual/
