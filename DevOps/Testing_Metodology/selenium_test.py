@@ -16,10 +16,11 @@ service = Service(geckodriver_path)
 # Initialize Firefox WebDriver with the Service object
 driver = webdriver.Firefox(service=service)
 
+aws_instance_IP = "http://51.17.183.171/"
 
 # Positive Check - Valid City
 try:
-    driver.get("http://51.17.24.179/")  # My AWS Instance IP
+    driver.get(aws_instance_IP)  # My AWS Instance IP
 
     # Send 'Jerusalem' City Name
     city_input = driver.find_element(By.NAME, "city") # Search Element By Name
@@ -41,7 +42,7 @@ except Exception as error:
 
 # Check None Input
 try:
-    driver.get("http://51.17.24.179/")
+    driver.get(aws_instance_IP)
 
     # Clear Input and Send Nothing
     city_input = driver.find_element(By.NAME, "city")
@@ -54,7 +55,7 @@ try:
 
     # Check if the form is still on the same page (submission blocked)
     current_url = driver.current_url
-    if current_url == "http://51.17.24.179/": #Check That I'm Still In HomePage
+    if current_url == aws_instance_IP: #Check That I'm Still In HomePage
         print("Empty Input Test Passed! Form submission blocked.")
     else:
         print("Empty Input Test FAILED! Form submission allowed.")
@@ -65,7 +66,7 @@ except Exception as error:
 
 # Back To Home Test
 try:
-    driver.get("http://51.17.24.179/")
+    driver.get(aws_instance_IP)
     city_input = driver.find_element(By.NAME, "city")
     city_input.send_keys("Jerusalem")
     city_input.send_keys(Keys.RETURN)
@@ -78,7 +79,7 @@ try:
 
     time.sleep(2)
 
-    if driver.current_url == "http://51.17.24.179/": # Check We Back Home
+    if driver.current_url == "http://51.17.183.171/": # Check We Back Home
         print("Back to Home Button Test Passed!")
     else:
         print("Back to Home Button Test FAILED!")
@@ -89,7 +90,7 @@ except Exception as error:
 
 # Negative Test - Check Not Valid City
 try:
-    driver.get("http://51.17.24.179/")  # חזרה לעמוד הבית
+    driver.get(aws_instance_IP)
 
     # Send Invalid City Name
     city_input = driver.find_element(By.NAME, "city")
