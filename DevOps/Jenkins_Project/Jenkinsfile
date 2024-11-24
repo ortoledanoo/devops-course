@@ -1,0 +1,149 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'weather-app'
+        DOCKERHUB_CREDENTIALS = credentials('ortoledanoo-dockerhub')
+    }
+
+    stages {
+        stage('Clean') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                        # Show All Containers || -a = all || -q = Only ID || xargs = take input as args || -r = Only if have input
+                        docker ps -aq | xargs -r docker rm -f
+                        docker images -q | xargs -r docker rmi -f
+
+                        # Remove all volumes
+                        docker volume prune -f
+
+                        # Remove all networks
+                        docker network prune -f
+                        '''
+                        checkout scm
+                    } catch (Exception error) {
+                        currentBuild.description = "Stage 'Clean' FAILED - ${error.getMessage()}"
+                        error "Stage 'Clean' FAILED - ${error.getMessage()}"
+                    }
+                }
+            }
+        }
+
+        stage('Pylint') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                            if [ ! -d "venv" ]; then
+                            python3 -m venv venv
+                            fi
+                            . ./venv/bin/activate
+                            pip install -r requirements.txt
+                            pylint --fail-under=5 app.py
+                        '''
+                    } catch (Exception error) {
+                        currentBuild.description = "Stage 'Pylint' FAILED - ${error.getMessage()}"
+                        error "Stage 'Pylint' FAILED-  ${error.getMessage()}"
+                    }
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                            docker build -t ortoledanoo/${DOCKER_IMAGE} .
+                            docker run -d --name ${DOCKER_IMAGE} -p 5000:5000 ortoledanoo/${DOCKER_IMAGE}
+                            sleep 3
+                        '''
+                    } catch (Exception error) {
+                        currentBuild.description = "Stage 'Build' FAILED - ${error.getMessage()}"
+                        error "Stage 'Build' FAILED - ${error.getMessage()}"
+                    }
+                }
+            }
+        }
+
+        stage('Test Availability') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                            # Fetch the public IP automatically
+                            public_ip=$(curl -s http://checkip.amazonaws.com)
+                            # Check if the URL is accessible
+                            if wget -q --spider http://${public_ip}:5000/; then
+                                echo "Site Available"  # Success
+                            else
+                                exit 1
+                            fi
+                        '''
+                    } catch (Exception error) {
+                        currentBuild.description = "Stage 'Test Availability' FAILED - ${error.getMessage()}"
+                        error "Stage 'Test Availability' FAILED - ${error.getMessage()}"
+                    }
+                }
+            }
+        }
+
+        stage('Push Image To DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'ortoledanoo-dockerhub', usernameVariable: 'DOCKER_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+                    script {
+                        try {
+                            sh '''
+                                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin
+                                docker push ${DOCKER_CREDENTIALS_USR}/${DOCKER_IMAGE}
+                            '''
+                        } catch (Exception error) {
+                            currentBuild.description = "Stage 'Push Image To DockerHub' FAILED - ${error.getMessage()}"
+                            error "Stage 'Push Image To DockerHub' FAILED - ${error.getMessage()}"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deployment') {
+            steps {
+                script {
+                    try {
+                        sh '''
+                            ssh ubuntu@172.31.35.199 'cd /home/ubuntu/weather_app && docker pull ortoledanoo/weather-app:latest && docker-compose down && docker-compose up -d'
+                        '''
+                    } catch (Exception error) {
+                        currentBuild.description = "Stage 'Deployment' FAILED - ${error.getMessage()}"
+                        error "Stage 'Deployment' FAILED - ${error.getMessage()}"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            slackSend channel: 'succeeded-build', color: '#36a64f', message: """
+            *:white_check_mark: Deployment Succeeded!*
+            *Application:* weather-app
+            *Build Status:* SUCCESS!
+            *Docker Image:* ortoledanoo/${DOCKER_IMAGE}
+            *Build Number:* ${env.BUILD_NUMBER}
+        """
+        }
+        failure {
+            slackSend channel: 'devops-alerts', color: '#ff0000', message: """
+            *:x: Deployment Failed!*
+            *Application -* weather-app
+            *Build Status -* FAILURE
+            *Pipeline URL -* ${env.BUILD_URL}
+            
+            *Error Details:*
+            ${currentBuild.description ?: 'No Error Available Details'}
+        """
+        }
+    }
+}

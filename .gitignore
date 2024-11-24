@@ -11,14 +11,16 @@
 !*.h
 !*.py
 !*.html
-!.css
+!*.css
 !*.md
 !*.drawio
 !*.service
 !*.Dockerfile
+!Dockerfile
 !*.conf
 !*.yml
 !*.yaml
-
+!*.Jenkinsfile
+!Jenkinsfile
 # Ignore Specific Directories
 Python/Weather_WebApp_Project/.virtual/
