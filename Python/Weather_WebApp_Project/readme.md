@@ -1,23 +1,23 @@
 # Project Oreview
 
-This Project is a Web Application That Provides a 7-day weather forecast Based on The City Name Provided By The User.
-It Use Flask to Handle Web Requests and Caching to Optimize API Usage and Performance.
+This project is a web application that provides a 7-day weather forecast based on the city name provided by the user.
+It use flask to handle web requests and caching to optimize api usage and performance.
 
 ## Needed Packages
 
-Install Needed Packages
+Install needed packages
 ```
 pip install -r requirements.txt
 ```
-requirement.txt Created With pipreqs
+requirement.txt created with 'pipreqs'
 
 ## Features
 
 * **Hidden API Key**
-* **Logging** - All Events are Logged in weather_app.log to Track Usage, HTTP, Errors and caching.
-* **Caching** - Stores Recent Weather Data for 5 Minutes, Reducing the Need To Call The Weather API Too Much Times For Same City Data
-* **Rate Limit** - Limit Users For Only ONE Request Per Second
-* **Max Connections Limit** - Allows Each Client IP Address Open No More Thean 5 Connections To App
+* **Logging** - All events are logged in weather_app.Log to track usage, http, errors and caching.
+* **Caching** - Stores recent weather data for 5 minutes, reducing the need to call the weather api too much times for same city data.
+* **Rate Limit** - Limit users for only one request per second.
+* **Max Connections Limit** - Allows each client ip address open no more thean 5 connections to app.
 
 # Workflow
 
@@ -90,29 +90,29 @@ Click "Back to Home" button:\
 
 # Deployment Workflow
 ## Oreview
-This Project Showcases a Scalability and Reliability Web Application Deployment Using Nginx, Gunicorn, and Flask
-with Caching and Rate-Limit to Efficiently Handle API calls and User Requests Simultaneously
+This project showcases a scalability and reliability web application deployment using nginx, gunicorn, and flask
+With caching and rate-limit to efficiently handle api calls and user requests simultaneously
 
 <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/m28m6fTp/drawio.png' border='0' alt='drawio'/></a>
 
 ## The Components
-1. **Client** - Users Making Request to The Web Application
-2. **Nginx** - Reverse Proxy That Receives Client Requests and Forwards Them to the Backend
-3. **Gunicorn-WSGI** - Server That Runs Multiple Instances of The Flask App, Allowing it to Handle More Requests at The Same Time
-4. **Flask** - The Actual Python Application That Processes User Requests and Returns The Weather Data
-6. **Deployment Environment** - Infrastructure Of The Application (Managed By ESXi), Includes The .py Files and All The Required Files
+1. **Client** -  Users making request to the web application.
+2. **Nginx** - Reverse proxy that receives client requests and forwards them to the backend.
+3. **Gunicorn-WSGI** - Server that runs multiple instances of the flask app, allowing it to handle more requests at the same time.
+4. **Flask** - The actual python application that processes user requests and returns the weather data.
+6. **Deployment Environment** - Infrastructure of the application (managed by esxi), includes the .Py files and all the required files.
 
 ## Request Workflow
-1. Client Send Request to Nginx Reverse Proxy
-2. Nginx Forwards Request to Gunicorn WSGI Server
-3. Gunicorn Passes The Request To Flask App Instance
-4. Flask Processes The Request and Returns the Response to Gunicorn
-5. Gunicorn Sends The Response Back to Nginx, Which Returns it To The Client
-6. Running Files are Packaged in The Target Environment (Using ESXi To Manage it)
+1. Client send request to nginx reverse proxy.
+2. Nginx forwards request to gunicorn wsgi server.
+3. Gunicorn passes the request to flask app instance.
+4. Flask processes the request and returns the response to gunicorn.
+5. Gunicorn sends the response back to nginx, which returns it to the client.
+6. Running files are packaged in the target environment (using esxi to manage it).
 
-## Benefits
-- **Scalability** - Components Can Be Scaled Independently
-- **Security** - Nginx Acts as a Reverse Proxy Hidding The Servers IP
-- **Load Balancing** - Nginx Can Distribute Requests Across Multiple Gunicorn/Flask Instances and Gunicorn Can Create Few Workers For Better Load Balancing
+## benefits
+- **Scalability** - Components can be scaled independently.
+- **Security** - Nginx acts as a reverse proxy hidding the servers ip.
+- **Load Balancing** - Nginx can distribute requests across multiple gunicorn/flask.instances and gunicorn can create few workers for better load balancing.
 
 
