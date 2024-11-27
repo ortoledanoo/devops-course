@@ -4,6 +4,8 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'weather-app'
         DOCKERHUB_CREDENTIALS = credentials('ortoledanoo-dockerhub')
+        PROD_UNAME = 'ubuntu'
+        PROD_IP = '172.31.35.199'
     }
 
     stages {
@@ -113,7 +115,7 @@ pipeline {
                 script {
                     try {
                         sh '''
-                            ssh ubuntu@172.31.35.199 'cd /home/ubuntu/weather_app && docker pull ortoledanoo/weather-app:latest && docker-compose down && docker-compose up -d'
+                            ssh ${PROD_UNAME}@${PROD_IP} 'cd /home/ubuntu/weather_app && docker pull ortoledanoo/weather-app:latest && docker-compose down && docker-compose up -d'
                         '''
                     } catch (Exception error) {
                         currentBuild.description = "Stage 'Deployment' FAILED - ${error.getMessage()}"
