@@ -1,0 +1,83 @@
+pipeline {
+    agent {
+        label 'build-agent'
+    }
+
+    environment {
+        // Define your environment variables here
+        SONAR_PROJECT_NAME = 'Calculator'
+        MAVEN_TOOL = 'Default Maven'
+        SONAR_PROJECT_KEY = credentials('sonarqube-project-key')
+        ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-token')
+    }
+
+    stages {
+        stage('SCM') {
+            steps {
+                // Checkout the source code from the Git repository
+                checkout scm
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def mvn = tool env.MAVEN_TOOL
+                    // Perform SonarQube analysis without running tests
+                    withSonarQubeEnv() {
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -DskipTests -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} -Dsonar.projectName=${env.SONAR_PROJECT_NAME}"
+                    }
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    def mvn = tool env.MAVEN_TOOL
+                    // Build the project without running tests
+                    sh "${mvn}/bin/mvn clean package -DskipTests"
+                }
+            }
+        }
+
+        stage('Install JFrog CLI') {
+            steps {
+                sh 'curl -fL https://getcli.jfrog.io | sh'
+                sh 'sudo mv jfrog /usr/local/bin/'
+            }
+        }
+
+        stage('Push To Artifactory') {
+            steps {
+                script {
+                    sh """
+                    jfrog rt upload \
+                    --url http://172.31.47.212:8082/artifactory/ \
+                    --access-token ${env.ARTIFACTORY_ACCESS_TOKEN} \
+                    /home/jenkins/workspace/Maven-Project/target/Calculator-1.0-SNAPSHOT.jar \
+                    calculator-app-repo/
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            emailext(
+                subject: 'Pipeline Succeeded: Calculator Build',
+                body: 'The Calculator project build and deployment pipeline succeeded.',
+                to: 'toldor811@gmail.com'
+            )
+        }
+
+        failure {
+            emailext(
+                subject: 'Pipeline Failed: Calculator Build',
+                body: 'The Calculator project build and deployment pipeline failed. Please check the logs for details.',
+                to: 'toldor811@gmail.com'
+            )
+        }
+    }
+}

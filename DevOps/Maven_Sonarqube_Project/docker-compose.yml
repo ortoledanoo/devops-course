@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SONAR_TOKEN: ${SONAR_TOKEN}
+        SONAR_HOST_URL: ${SONAR_HOST_URL}
+        ARTIFACTORY_TOKEN: ${ARTIFACTORY_TOKEN}
+        ARTIFACTORY_URL: ${ARTIFACTORY_URL}
+    env_file:
+      - .env
+
+# Run Using docker-compose up --build :)
+# Make Sure in Working Directory file .env and file Dockerfile Exist
