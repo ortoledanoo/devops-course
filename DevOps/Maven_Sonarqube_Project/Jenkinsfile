@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        // Define your environment variables here
+        // ENV Setup
         SONAR_PROJECT_NAME = 'Calculator'
         MAVEN_TOOL = 'Default Maven'
         SONAR_PROJECT_KEY = credentials('sonarqube-project-key')
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     def mvn = tool env.MAVEN_TOOL
-                    // Perform SonarQube analysis without running tests
+                    // Start SonarQube Static Analysis
                     withSonarQubeEnv() {
                         sh "${mvn}/bin/mvn clean verify sonar:sonar -DskipTests -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} -Dsonar.projectName=${env.SONAR_PROJECT_NAME}"
                     }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     def mvn = tool env.MAVEN_TOOL
-                    // Build the project without running tests
+                    // Build The Project Without Tests
                     sh "${mvn}/bin/mvn clean package -DskipTests"
                 }
             }

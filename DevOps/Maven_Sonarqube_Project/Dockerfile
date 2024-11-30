@@ -1,4 +1,5 @@
-# Stage 1: Maven build and analyze
+# Depands on .env File!
+# Stage 1 - Maven Build and Sonarqube Tests
 FROM maven:3.8-openjdk-17 AS builder
 
 WORKDIR /app
@@ -15,7 +16,7 @@ RUN mvn clean verify sonar:sonar \
     -Dsonar.token=${SONAR_TOKEN} \
     && mvn clean package -DskipTests
 
-# Stage 2: JFrog CLI for Artifactory upload
+# Stage 2 - JFrog CLI Upload Artifacts to Artifactory
 FROM releases-docker.jfrog.io/jfrog/jfrog-cli-v2 AS artifactory
 
 WORKDIR /app
