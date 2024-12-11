@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80       # External port (service port)
+    targetPort: 80 # Internal container port
+    nodePort: 30080 # Optional: Node port (range: 30000–32767)
