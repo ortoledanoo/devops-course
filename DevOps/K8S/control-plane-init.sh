@@ -141,6 +141,8 @@ kubectl apply -f kube-flannel.yml
 # Install Matrics-Server
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
+
+# Ignore tls in metrics
 kubectl patch deployment metrics-server -n kube-system --type='json' -p='[
 {
 "op": "add",
