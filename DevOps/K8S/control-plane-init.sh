@@ -8,6 +8,7 @@
 #  - Initializes a Kubernetes Control Plane Node                               #
 #  - Configures containerd as Container Runtime                                #
 #  - Sets up Flannel CNI Cith Custom Pod CIDR                                  #
+#  - Install metrics-server To Control Plane Node                              #
 #  - Extract The join Command for Worker Nodes to kubeadm-join-command.txt     #
 #                                                                              #
 #  Prerequisites:                                                              #
@@ -137,3 +138,34 @@ echo "2. Added $NEW_ARG to the args section in DaemonSet."
 # Install The Flannel
 kubectl apply -f kube-flannel.yml
 
+# Install Matrics-Server
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+kubectl patch deployment metrics-server -n kube-system --type='json' -p='[
+{
+"op": "add",
+"path": "/spec/template/spec/hostNetwork",
+"value": true
+},
+{
+"op": "replace",
+"path": "/spec/template/spec/containers/0/args",
+"value": [
+"--cert-dir=/tmp",
+"--secure-port=4443",
+"--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname",
+"--kubelet-use-node-status-port",
+"--metric-resolution=15s",
+"--kubelet-insecure-tls"
+]
+},
+{
+"op": "replace",
+"path": "/spec/template/spec/containers/0/ports/0/containerPort",
+"value": 4443
+}
+]'
+
+
+echo "Enjoy Your K8S"
+echo "Or Toledano"

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solitaire-app
+  labels:
+    app: solitaire-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solitaire-app
+  template:
+    metadata:
+      labels:
+        app: solitaire-app
+    spec:
+      containers:
+      - name: solitaire-app
+        image: chimenesjr/solitaire:nginx
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m" 
+          limits:
+            cpu: "500m" 
