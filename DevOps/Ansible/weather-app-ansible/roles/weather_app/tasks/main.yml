@@ -1,0 +1,5 @@
+- name: Include task to copy files
+  include_tasks: copy_files.yml
+
+- name: Include task to run script
+  include_tasks: run_script.yml

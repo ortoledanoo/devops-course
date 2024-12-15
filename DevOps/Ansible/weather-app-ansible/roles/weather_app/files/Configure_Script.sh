@@ -26,7 +26,7 @@ AppName="app"
 ServiceName="weather_app"
 
 # Server IP address
-ServerName="10.1.0.177"
+ServerName="or_server"
 
 # Port for Nginx to Listen On
 ServerPort="9090"
@@ -34,9 +34,9 @@ ServerPort="9090"
 # IP Address To Bind Gunicorn
 ServerIP="0.0.0.0" 
 
-######################
+
 # Script starts here #
-######################
+#____________________#
 
 # Update libraries
 sudo apt-get update
@@ -72,7 +72,7 @@ source venv/bin/activate
 
 # Install requirements.txt if it Exists
 if [ -f requirements.txt ]; then
-    pip install -r requirements.txt
+    $WorkingDirectory/venv/bin/pip install -r requirements.txt
 else
     echo "No requirements.txt found, skipping installation."
 fi
@@ -98,15 +98,16 @@ Description=Gunicorn instance to serve Flask
 After=network.target
 
 [Service]
-User=root
+User=ubuntu
 Group=www-data
 WorkingDirectory=$WorkingDirectory
 Environment=\"PATH=$WorkingDirectory/venv/bin\"
-ExecStart=$WorkingDirectory/venv/bin/gunicorn --bind $ServerIP:5000 wsgi:app --error-logfile /var/log/gunicorn/access.log --capture-output --log-level info
+ExecStart=$WorkingDirectory/venv/bin/gunicorn --bind $ServerIP:5000 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
 EOF"
+
 
 # Remove Default Site from Nginx
 sudo rm -f /etc/nginx/sites-enabled/default

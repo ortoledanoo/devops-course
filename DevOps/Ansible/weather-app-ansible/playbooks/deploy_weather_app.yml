@@ -1,0 +1,7 @@
+- name: Deploy Weather App
+  hosts: ec2
+  become: true
+
+  roles:
+    - weather_app
+

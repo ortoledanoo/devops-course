@@ -1,0 +1,27 @@
+---
+- name: Stop Service and Install Nginx
+  hosts: ec2
+  become: true # Allow to run as sudo
+
+  tasks:
+    - name: Stop Printer Target Service
+      ansible.builtin.systemd:
+        name: printer.target
+        state: stopped
+
+    - name: Update APT
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: latest
+      notify:
+        - Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded

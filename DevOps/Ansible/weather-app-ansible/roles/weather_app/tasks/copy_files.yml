@@ -1,0 +1,11 @@
+- name: Create app directory if it does not exist
+  file:
+    path: "{{ app_directory }}"
+    state: directory
+    mode: '0777'
+
+- name: Copy weather app files
+  copy:
+    src: files/
+    dest: "{{ app_directory }}"
+    mode: '0777'

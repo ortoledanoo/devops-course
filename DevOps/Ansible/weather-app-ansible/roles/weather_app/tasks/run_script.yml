@@ -1,0 +1,8 @@
+- name: Copy the configuration script
+  copy:
+    src: "{{ script_name }}"
+    dest: "{{ script_path }}"
+    mode: '0755'
+
+- name: Run the configuration script
+  command: sh "{{ script_path }}"
