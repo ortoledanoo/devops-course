@@ -10,5 +10,5 @@ scp local_file dest_user@dest_ip:/path/on/dest
 
 command < file1 > file2 2> file3
 # < file1 || Redirects input to the command from file1
-# > file2: Redirects stdout to file2
-# 2> file3: Redirects stderr to file3
+# > file2 ||  Redirects stdout to file2
+# 2> file3 ||  Redirects stderr to file3
