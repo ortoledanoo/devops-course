@@ -1,16 +1,23 @@
-#!/bin/bash
+################################################################################
+#                                                                              #
+#                     Deploy Weather-App Automated Script                      #
+#                                                                              #
+#  Created by: Or Toledano                                                     #
+#                                                                              #
+#  Main Usage:                                                                 #
+#  - Automaticly deploy weather-app binaries                                   #
+#  - Using nginx, Flask and Gunicorn                                           #
+#                                                                              #
+#  Note: Change The Global Variables                                           #
+#                                                                              #
+################################################################################
 
-# Do  chmod 775
+#!/bin/bash
 
 echo "This Script Will install and Configure Flask, Gunicorn, Nginx, and the Python Virtual Environment."
 
-
-#____________________________________#
-# Change This Section before running #
-#____________________________________#
-
 # Project Directory Path
-WorkingDirectory="/home/server_2/weather_app"
+WorkingDirectory="/home/ubuntu/weather_app"
 
 # Name Of Main .py Module
 AppName="app"
