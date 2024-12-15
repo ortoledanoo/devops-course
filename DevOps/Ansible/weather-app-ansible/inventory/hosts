@@ -1,0 +1,4 @@
+ansible_train ansible_host=51.17.79.217
+
+[ec2]
+ansible_train
