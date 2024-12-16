@@ -145,5 +145,3 @@ echo ""
 echo "Install Complete!"
 echo "Test Flask App in Browser at http://$ServerName"
 echo "Logs --> /var/log/gunicorn/"
-
-
