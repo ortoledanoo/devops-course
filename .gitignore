@@ -6,24 +6,45 @@
 
 # Track Specific Files and Extensions 
 !.gitignore
+
+# Linux & Bash
 !*.sh
+!*.service
+
+# C
 !*.c
 !*.h
+
+# Python + Web
 !*.py
 !*.html
 !*.css
+.idea
+
+# Design
 !*.md
 !*.drawio
-!*.service
+
+# Docker
 !*.Dockerfile
 !Dockerfile
 !*.conf
+
+# YAML
 !*.yml
 !*.yaml
+
+# Jenkins
 !*.Jenkinsfile
 !Jenkinsfile
+
+# Java
 !*.java
 !*.xml
-.idea
+
+# Terraform
+!*.tf
+.terraform
+
 # Ignore Specific Directories
 Python/Weather_WebApp_Project/.virtual/
