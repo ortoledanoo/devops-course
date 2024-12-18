@@ -1,6 +1,6 @@
 module "security_group" {
   source = "../../modules/security_group"
-  
+  # Allow Inboud From ->
   ingress_rules = [
     { port = 22, cidr = "213.57.121.34/32", description = "Allow SSH" },
     { port = 80, cidr = "0.0.0.0/0", description = "Allow HTTP" },

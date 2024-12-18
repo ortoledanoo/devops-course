@@ -16,11 +16,10 @@ variable "key_name" {
 variable "playbook_path" {
   description = "Path to the Ansible playbook"
   type        = string
-  default     = "docker-weather-app-playbook.yml" # If Not Set in terraform.tfvars
 }
 
 variable "ssh_user" {
   description = "SSH user for Ansible connection"
   type        = string
-  default     = "ubuntu" # If Not Set in terraform.tfvars
+  default     = "ubuntu" # Use if not set in terraform.tfvars
 }
