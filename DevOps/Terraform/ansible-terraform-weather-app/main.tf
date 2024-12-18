@@ -1,6 +1,6 @@
 # Security Group Definition
 resource "aws_security_group" "ex4-SG" {
-  name        = "ex4-SG"
+  name        = "Ansible-Terraform-SG"
   description = "Allow inbound SSH, HTTP/HTTPS and all outbound traffic"
 
   # Dynamic Inbound Rules
@@ -9,6 +9,7 @@ resource "aws_security_group" "ex4-SG" {
       { port = 22, cidr = "213.57.121.34/32", description = "Allow SSH" },
       { port = 80, cidr = "0.0.0.0/0", description = "Allow HTTP" },
       { port = 443, cidr = "0.0.0.0/0", description = "Allow HTTPS" },
+      { port = 5000, cidr = "0.0.0.0/0", description = "Allow Python-WeatherApp" }
     ]
 
     content {
@@ -39,6 +40,15 @@ resource "aws_instance" "example_server" {
   vpc_security_group_ids = [aws_security_group.ex4-SG.id]
 
   tags = {
-    Name = "EX4_Instance"
+    Name = "Ansible-Terraform-Instance"
+  }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      echo "[weather-app]" > inventory
+      echo "${self.public_ip}" >> inventory
+      sleep 120
+      ansible-playbook -i inventory -u ubuntu docker-weather-app-playbook.yml
+    EOT
   }
 }
