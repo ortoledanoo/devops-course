@@ -1,5 +1,5 @@
 # Security Group Definition
-resource "aws_security_group" "ex4-SG" {
+resource "aws_security_group" "ansible-tf-sg" {
   name        = "Ansible-Terraform-SG"
   description = "Allow inbound SSH, HTTP/HTTPS and all outbound traffic"
 
@@ -37,7 +37,7 @@ resource "aws_instance" "example_server" {
   instance_type = "t3.micro"
   key_name      = "infinity_key_pair"
 
-  vpc_security_group_ids = [aws_security_group.ex4-SG.id]
+  vpc_security_group_ids = [aws_security_group.ansible-tf-sg.id]
 
   tags = {
     Name = "Ansible-Terraform-Instance"
