@@ -11,7 +11,7 @@ module "security_group" {
 
 module "ec2_instance" {
   source = "../../modules/ec2_instance"
-  
+
   ami_id             = var.ami_id
   instance_type      = var.instance_type
   key_name           = var.key_name
@@ -20,9 +20,9 @@ module "ec2_instance" {
 
 module "app_deployment" {
   source = "../../modules/app_deployment"
-  
-  instance_ip        = module.ec2_instance.public_ip
-  playbook_path     = "../../modules/app_deployment/docker-weather-app-playbook.yml"
-  ssh_user          = var.ssh_user
-  depends_on        = [module.ec2_instance]
+
+  instance_ip   = module.ec2_instance.public_ip
+  playbook_path = "../../modules/app_deployment/docker-weather-app-playbook.yml"
+  ssh_user      = var.ssh_user
+  depends_on    = [module.ec2_instance]
 }

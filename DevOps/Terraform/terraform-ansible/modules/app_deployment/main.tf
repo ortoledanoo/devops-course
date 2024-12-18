@@ -4,8 +4,8 @@ resource "null_resource" "ansible_provisioner" {
   }
 
   provisioner "local-exec" {
-    working_dir = path.module  # Set working directory to module directory
-    command = <<EOT
+    working_dir = path.module # Set working directory to module directory
+    command     = <<EOT
       {
         echo "[weather-app]"
         echo "${var.instance_ip}"
