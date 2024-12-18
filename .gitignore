@@ -41,6 +41,7 @@
 # Java
 !*.java
 !*.xml
+target/
 
 # Terraform
 !*.tf

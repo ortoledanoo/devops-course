@@ -35,7 +35,7 @@ resource "aws_security_group" "ex4-SG" {
 resource "aws_instance" "example_server" {
   ami           = "ami-01c587e7bcf6ff91f"
   instance_type = "t3.micro"
-  key_name   = "infinity_key_pair"
+  key_name      = "infinity_key_pair"
 
   vpc_security_group_ids = [aws_security_group.ex4-SG.id]
 
@@ -45,9 +45,11 @@ resource "aws_instance" "example_server" {
 
   provisioner "local-exec" {
     command = <<EOT
-      echo "[weather-app]" > inventory
-      echo "${self.public_ip}" >> inventory
-      sleep 120
+      {
+        echo "[weather-app]"
+        echo "${self.public_ip}" 
+      } > inventory
+      sleep 90
       ansible-playbook -i inventory -u ubuntu docker-weather-app-playbook.yml
     EOT
   }
