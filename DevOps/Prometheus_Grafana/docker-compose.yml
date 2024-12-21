@@ -1,0 +1,31 @@
+services:
+  prometheus:
+    # Prometheus service configuration
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml' # Custom Prometheus configuration file
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus # Bind Mount - for prometheus.yml
+      - prom_data:/prometheus # named volume "prom_data" for Prometheus data storage
+
+  grafana:
+    # Grafana service configuration
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources # Bind Mount - for datasources.yml
+volumes:
+  prom_data: # Named volume for persistent storage of Prometheus data
+
+# Used Named Volume - For Persistent Storage
+# Used Bind Mount - For Specific Files
