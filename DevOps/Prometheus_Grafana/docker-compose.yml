@@ -24,8 +24,12 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=grafana
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources # Bind Mount - for datasources.yml
+      - grafana_data:/var/lib/grafana # Named Volume "grafana_data" for Grafana data storage
+
 volumes:
   prom_data: # Named volume for persistent storage of Prometheus data
+  grafana_data: # Named volume for persistent storage of Grafana data
+
 
 # Used Named Volume - For Persistent Storage
 # Used Bind Mount - For Specific Files
