@@ -1,0 +1,10 @@
+filebeat.inputs:
+  - type: log
+    paths:
+      - /usr/share/filebeat/logs/weather_app.log
+    multiline.pattern: '^(INFO|ERROR|DEBUG):'
+    multiline.negate: true
+    multiline.match: after
+
+output.elasticsearch:
+  hosts: ['${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}']
