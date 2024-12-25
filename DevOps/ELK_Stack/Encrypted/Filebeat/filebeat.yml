@@ -1,0 +1,21 @@
+filebeat.inputs:
+  - type: log
+    paths:
+      - /usr/share/filebeat/logs/weather_app.log
+    multiline.pattern: '^(INFO|ERROR|DEBUG):'
+    multiline.negate: true
+    multiline.match: after
+
+output.logstash:
+  hosts: ['10.0.0.6:5044']
+  protocol: "https"
+  ssl.verification_mode: none
+
+  # Specify the path to the CA certificate for verification
+  ssl.certificate_authorities: ["/usr/share/filebeat/ca-cert.pem"]
+
+  # Specify the path to the client certificate
+  ssl.certificate: "/usr/share/filebeat/server.crt"
+
+  # Specify the path to the client private key
+  ssl.key: "/usr/share/filebeat/server.key"
