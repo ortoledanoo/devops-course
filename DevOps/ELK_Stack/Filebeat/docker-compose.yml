@@ -25,7 +25,7 @@ services:
       - ./weather_app.log:/usr/share/filebeat/logs/weather_app.log:ro
     command: ["filebeat", "-e", "-strict.perms=false"]
     environment:
-      - ELASTICSEARCH_HOST=51.17.64.59
+      - ELASTICSEARCH_HOST=10.0.0.6
       - ELASTICSEARCH_PORT=9200
     networks:
       - app-network
