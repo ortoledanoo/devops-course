@@ -26,10 +26,10 @@ AppName="app"
 ServiceName="weather_app"
 
 # Server IP address
-ServerName="10.1.0.177"
+ServerName="FILL HERE"
 
 # Port for Nginx to Listen On
-ServerPort="9090"
+ServerPort="FILL HERE"
 
 # IP Address To Bind Gunicorn
 ServerIP="0.0.0.0" 

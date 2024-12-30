@@ -6,7 +6,7 @@ This project automates the deployment of a Flask-based weather application using
 - **Automated setup** for Flask, Gunicorn, and Nginx.
 - **Reverse proxy** configuration for secure traffic handling.
 - Configurable **rate limiting** and **connection restrictions**.
-- Integrated **systemd service** for managing the Flask application.
+- Create **service** for managing the Flask application and auto-start.
 
 ## Prerequisites
 - Ubuntu-based server.
@@ -17,10 +17,9 @@ This project automates the deployment of a Flask-based weather application using
 2. Edit the `auto_deployment.sh` script:
    - Update the global variables:
      - `WorkingDirectory` – Path to the application folder.
-     - `AppName` – Name of the main Python module (e.g., `app.py`).
-     - `ServiceName` – Name of the systemd service.
-     - `ServerName` – Public IP address or domain name.
-     - `ServerPort` – Port number for Nginx.
+     - `AppName` – Name of the main Python module (`app` in `app.py`).
+     - `ServiceName` – Name of the service will created.
+     - `ServerPort` – Port number to expose.
 3. Run the deployment script -
    ```bash
    sudo chmod +x auto_deployment.sh
