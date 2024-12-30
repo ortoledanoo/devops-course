@@ -11,6 +11,7 @@ This project demonstrates a CI/CD pipeline for a simple Java Maven application u
 ## Steps to Run the Pipeline
 
 1. **Fork the Repository** - [Simple Java Maven App](https://github.com/jenkins-docs/simple-java-maven-app).
+
 2. **Set Up Repository Secrets**:
    - `DOCKER_USERNAME` and `DOCKER_PASSWORD` for Docker Hub.
    - `AWS_ACCESS_ID` and `AWS_ACCESS_KEY` for AWS User.
