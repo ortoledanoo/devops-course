@@ -11,6 +11,7 @@ This project demonstrates a CI/CD pipeline for a simple Java Maven application u
 ## Steps to Run the Pipeline
 
 1. **Fork the Repository** - [Simple Java Maven App](https://github.com/jenkins-docs/simple-java-maven-app).
+
 2. **Set Up Repository Secrets**:
    - `DOCKER_USERNAME` and `DOCKER_PASSWORD` for Docker Hub.
    - `AWS_ACCESS_ID` and `AWS_ACCESS_KEY` for AWS User.
@@ -19,9 +20,12 @@ This project demonstrates a CI/CD pipeline for a simple Java Maven application u
    - `SSH_PRIVATE_KEY` for SSH access to the deployment server.
 
 3. **Pipeline Workflow**:
-   - **Version Update** - Updates the Maven project version using `mvn release:update-versions` Plugin.
-   - **Docker Build** - Builds and pushes the Docker image to Docker Hub.
-   - **Deployment** - Deploys the application using Docker Compose on a remote server and SSH Connection.
+   - **Version Update** - Updates the Maven project version using the `mvn release:update-versions` plugin.
+   - **Docker Build** - Builds and push the Docker image to Docker Hub.
+   - **Security Group Update** - Temporarily adds the runner's IP address to the AWS Security Group (Using AWS_SG_ID)to allow SSH access.
+   - **Deployment** - Deploys the application using Docker Compose on a remote server via SSH connection.
+   - **Security Group Cleanup** - Removes the runner's IP address from the AWS Security Group after deployment to keep high security.
+
 
 ## How to Trigger the Pipeline
 
