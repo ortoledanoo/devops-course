@@ -3,6 +3,8 @@
 This project is a web application that provides a 7-day weather forecast based on the city name provided by the user.
 It use flask to handle web requests and caching to optimize api usage and performance.
 
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/fb78Zp4F/web-app.png' border='0' alt='web-app'/></a>
+
 ## Needed Packages
 
 Install needed packages
