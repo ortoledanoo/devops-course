@@ -1,3 +1,5 @@
+# Reviewed By Joni
+
 def run_length_encoding(user_input):
     result = []
     count = 1
@@ -15,4 +17,5 @@ def run_length_encoding(user_input):
     
     return ''.join(result)  
 
-print(run_length_encoding("WBWWWBB"))  
+if __name__ == "__main__":
+    print(run_length_encoding("WBWWWBB"))
