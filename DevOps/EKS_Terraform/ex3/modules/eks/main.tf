@@ -4,12 +4,12 @@ provider "aws" {
 
 # Filter out local zones, which are not currently supported 
 # with managed node groups
-data "aws_availability_zones" "available" {
-  filter {
-    name   = "opt-in-status"
-    values = ["opt-in-not-required"]
-  }
-}
+#data "aws_availability_zones" "available" {
+#  filter {
+#    name   = "opt-in-status"
+#    values = ["opt-in-not-required"]
+#  }
+#}
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -59,7 +59,7 @@ module "eks" {
 }
 
 
-# https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/ 
+# Fetch the Policy and store it in variable 'arn'
 data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
