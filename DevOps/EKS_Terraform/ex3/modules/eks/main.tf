@@ -1,15 +1,7 @@
+# aws eks update-kubeconfig --region il-central-1 --name my-eks-cluster 
 provider "aws" {
   region = var.region
 }
-
-# Filter out local zones, which are not currently supported 
-# with managed node groups
-#data "aws_availability_zones" "available" {
-#  filter {
-#    name   = "opt-in-status"
-#    values = ["opt-in-not-required"]
-#  }
-#}
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -31,8 +23,7 @@ module "eks" {
   subnet_ids = var.subnet_ids
 
   eks_managed_node_group_defaults = {
-    ami_type = "AL2_x86_64"
-
+    ami_type = var.ami_type
   }
 
   eks_managed_node_groups = {

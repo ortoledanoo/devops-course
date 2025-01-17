@@ -16,6 +16,12 @@ variable "cluster_version" {
   default     = "1.31"
 }
 
+variable "ami_type" {
+  description = "AMI Type of Worker Nodes"
+  type        = string
+  default     = "AL2_x86_64"
+}
+
 variable "vpc_id" {
   description = "VPC ID"
   type        = string
