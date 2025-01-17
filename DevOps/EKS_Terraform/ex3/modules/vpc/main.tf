@@ -21,23 +21,23 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# Public Subnets in multiple AZs
+# Public Subnets in 2 AZ's
 resource "aws_subnet" "public" {
   count             = 2
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_cidrs[count.index]
   availability_zone = var.availability_zones[count.index]
-  
+
   map_public_ip_on_launch = true
 
   tags = {
-    Name                                           = "${var.project_name}-public-subnet-${count.index + 1}"
+    Name                                   = "${var.project_name}-public-subnet-${count.index + 1}"
     "kubernetes.io/cluster/my-eks-cluster" = "shared"
-    "kubernetes.io/role/elb"                       = "1"
+    "kubernetes.io/role/elb"               = "1"
   }
 }
 
-# Private Subnets in multiple AZs
+# Private Subnets in 2 AZ's
 resource "aws_subnet" "private" {
   count             = 2
   vpc_id            = aws_vpc.main.id
@@ -45,12 +45,13 @@ resource "aws_subnet" "private" {
   availability_zone = var.availability_zones[count.index]
 
   tags = {
-    Name                                           = "${var.project_name}-private-subnet-${count.index + 1}"
+    Name                                   = "${var.project_name}-private-subnet-${count.index + 1}"
     "kubernetes.io/cluster/my-eks-cluster" = "shared"
-    "kubernetes.io/role/internal-elb"              = "1"
+    "kubernetes.io/role/internal-elb"      = "1"
   }
 }
 
+# Elastic IP
 resource "aws_eip" "nat" {
   domain = "vpc"
 
@@ -59,6 +60,7 @@ resource "aws_eip" "nat" {
   }
 }
 
+# NAT Gateway
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
