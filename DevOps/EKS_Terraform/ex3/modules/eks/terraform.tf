@@ -5,7 +5,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.47.0"
     }
-
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.0"
+    }
     random = {
       source  = "hashicorp/random"
       version = "~> 3.6.1"
@@ -24,4 +27,3 @@ terraform {
 
   required_version = "~> 1.3"
 }
-

@@ -1,4 +1,5 @@
-# aws eks update-kubeconfig --region il-central-1 --name my-eks-cluster 
+# aws eks update-kubeconfig --region il-central-1 --name my-eks-cluster
+
 provider "aws" {
   region = var.region
 }
@@ -44,7 +45,7 @@ data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
 
-# Creating IAM OIDC Identity Providers
+# Creating IAM OIDC Identity Providers for EBS CSI Driver
 module "irsa-ebs-csi" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version = "5.39.0"
@@ -52,6 +53,6 @@ module "irsa-ebs-csi" {
   create_role                   = true
   role_name                     = "AmazonEKSTFEBSCSIRole-${module.eks.cluster_name}"
   provider_url                  = module.eks.oidc_provider
-  role_policy_arns              = [data.aws_iam_policy.ebs_csi_policy.arn]
+  role_policy_arns             = [data.aws_iam_policy.ebs_csi_policy.arn]
   oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:ebs-csi-controller-sa"]
 }

@@ -27,3 +27,8 @@ variable "service_port" {
   type        = number
   default     = 80
 }
+
+variable "public_subnet_ids" {
+  description = "List of public subnet IDs for ALB"
+  type        = list(string)
+}
