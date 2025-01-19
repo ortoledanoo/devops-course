@@ -23,3 +23,4 @@ variable "ssh_user" {
   type        = string
   default     = "ubuntu" # Use if not set in terraform.tfvars
 }
+

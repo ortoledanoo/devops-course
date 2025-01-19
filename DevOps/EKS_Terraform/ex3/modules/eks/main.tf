@@ -39,12 +39,12 @@ module "eks" {
   }
 }
 
-
 # Fetch the Policy and store it in variable 'arn'
 data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
 
+# Creating IAM OIDC Identity Providers
 module "irsa-ebs-csi" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version = "5.39.0"

@@ -36,3 +36,5 @@ data "aws_eks_cluster" "this" {
 module "weather_app" {
   source = "../../modules/app_deployment"
 }
+
+
