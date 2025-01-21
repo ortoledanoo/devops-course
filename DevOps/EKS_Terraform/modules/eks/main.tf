@@ -1,14 +1,8 @@
-# aws eks update-kubeconfig --region il-central-1 --name my-eks-cluster
-
-provider "aws" {
-  region = var.region
-}
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.8.5"
 
-  cluster_name    = var.cluster_name
+  cluster_name    = "${var.environment}-cluster"
   cluster_version = var.cluster_version
 
   cluster_endpoint_public_access           = true
@@ -21,31 +15,32 @@ module "eks" {
   }
 
   vpc_id     = var.vpc_id
-  subnet_ids = var.subnet_ids
+  subnet_ids = var.private_subnets
 
   eks_managed_node_group_defaults = {
-    ami_type = var.ami_type
+    ami_type = "AL2_x86_64"
   }
 
   eks_managed_node_groups = {
-    one = {
+    nodes = {
       name = "node-group-1"
-
       instance_types = [var.instance_type]
 
       min_size     = 1
-      max_size     = 3
+      max_size     = 2
       desired_size = 1
     }
   }
+
+  tags = {
+    Environment = var.environment
+  }
 }
 
-# Fetch the Policy and store it in variable 'arn'
 data "aws_iam_policy" "ebs_csi_policy" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
 
-# Creating IAM OIDC Identity Providers for EBS CSI Driver
 module "irsa-ebs-csi" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version = "5.39.0"

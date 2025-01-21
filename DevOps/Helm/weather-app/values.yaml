@@ -1,0 +1,10 @@
+appName: weather-app
+
+port: 80
+
+namespace: default
+
+
+image:
+  name: ortoledanoo/weather-app
+  tag: latest
