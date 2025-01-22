@@ -2,7 +2,7 @@ FROM jenkins/agent:latest
 
 USER root
 
-# Install necessary packages
+# Install packages
 RUN apt-get update && apt-get install -y \
     curl \
     python3 \
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
-# Set up Docker repository and install Docker
+# Install Docker
 RUN apt-get update && \
     apt-get install -y ca-certificates curl gnupg && \
     install -m 0755 -d /etc/apt/keyrings && \

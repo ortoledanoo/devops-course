@@ -1,7 +1,7 @@
 FROM jenkins/agent:latest
 USER root
 
-# Install all necessary packages in a single layer
+# Install all packages in a single layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
