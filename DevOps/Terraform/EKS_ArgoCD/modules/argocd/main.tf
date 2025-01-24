@@ -24,7 +24,7 @@ resource "helm_release" "argocd" {
 resource "kubernetes_ingress_v1" "argocd_ingress" {
   metadata {
     name      = "argocd-ingress"
-    namespace = "argocd"
+    namespace = "default"
     annotations = {
       "kubernetes.io/ingress.class"                    = "alb"
       "alb.ingress.kubernetes.io/scheme"               = "internet-facing"
@@ -55,6 +55,4 @@ resource "kubernetes_ingress_v1" "argocd_ingress" {
       }
     }
   }
-
-  depends_on = [helm_release.argocd]
 }
