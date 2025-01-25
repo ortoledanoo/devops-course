@@ -47,5 +47,5 @@ module "argocd" {
   vpc_id            = module.vpc.vpc_id_output
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  depends_on = [module.eks]
+  depends_on = [module.alb]
 }

@@ -7,7 +7,7 @@ variable "region" {
 variable "environment" {
   description = "Environment name"
   type        = string
-  default     = "argocd"
+  default     = "production"
 }
 
 variable "instance_type" {
@@ -21,5 +21,3 @@ variable "cluster_version" {
   type        = string
   default     = "1.29"
 }
-
-

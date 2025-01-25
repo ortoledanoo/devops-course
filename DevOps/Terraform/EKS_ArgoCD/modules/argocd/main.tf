@@ -55,5 +55,6 @@ resource "kubernetes_ingress_v1" "argocd_ingress" {
       }
     }
   }
-  depends_on = [ helm_release.argocd ]
+
+  depends_on = [helm_release.argocd]
 }
