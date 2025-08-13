@@ -2,8 +2,7 @@
 
 This project demonstrates a CI/CD pipeline for automating the SDLC (software development lifecycle). It integrates with tools and services, such as Jenkins, GitLab, Docker, and Slack, to make sure efficient code delivery from development to production.
 
-<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/Wz1W5nHy/jenkins.png' border='0' alt='jenkins'/></a>
-
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/jqf1FYVh/jenkins-drawio.png' border='0' alt='jenkins-drawio'/></a>
 
 ## Components
 
